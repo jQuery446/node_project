@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+<body>
+    <di id="app">
+        <input v-model="username" type="text" placeholder="请输入用户名">
+        <br />
+        <input v-model="pwd" type="text" placeholder="请输入用户名">
+        <br />
+        <button @click="handleReg">注册</button>
+        <button @click="handleLogin">登录</button>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            username:'Yooye',
+            pwd:'123'
+        },
+        methods: {
+            handleReg(){
+                let data = `username=${this.username}&pwd=${this.pwd}`
+                axios.get('/users/reg?'+data).then((result)=>{
+                    console.log(result)
+                })
+            },
+            handleLogin(){
+                let data = `username=${this.username}&pwd=${this.pwd}`
+                axios.get('/users/login?'+data).then((result)=>{
+                    console.log(result)
+                })
+            }
+        },
+    })
+</script>
+</html>
